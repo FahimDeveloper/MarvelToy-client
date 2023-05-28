@@ -4,7 +4,7 @@ import Logo from "../../../assets/logo-removebg-preview.png"
 import { AuthContext } from '../../../Auth/Auth';
 
 const Header = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
     return (
         <div className='bg-orange-50 py-2 rounded-full'>
             <div className='container mx-auto flex justify-between items-center'>
@@ -23,7 +23,7 @@ const Header = () => {
                     }
                     <NavLink to="/blog" className={({ isActive }) => isActive ? 'active' : ''}>Blog</NavLink>
                     {
-                        user ? <span className='cursor-pointer'>Log Out</span>
+                        user ? <span onClick={() => logOut()} className='cursor-pointer'>Log Out</span>
                             : <NavLink to="/login" className={({ isActive }) => isActive ? 'active' : ''}>Login</NavLink>
                     }
                 </div>
