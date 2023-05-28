@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 const PrivetRoute = ({ children }) => {
     const { user } = useContext(AuthContext)
     if (!user) {
-        return <Navigate to="/" replace />
+        return <Navigate to="/" replace={true} />
     }
     return children
 };
