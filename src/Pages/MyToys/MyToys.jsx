@@ -4,13 +4,34 @@ import { FaPen, FaTrash, FaRegEye } from "react-icons/fa";
 
 const MyToys = () => {
     const { user } = useContext(AuthContext)
-    const [allToysData, setAllToysData] = useState([])
-    const url = `http://localhost:5000/sellerToys/${user?.email}`
+    const [sellerToysData, setSellerToysData] = useState([]);
+    const [sortByPrice, setSortByPrice] = useState('')
+    const myToysUrl = `http://localhost:5000/sellerToys/${user?.email}`;
+    const highToLowUrl = `http://localhost:5000/sellerToys/highToLow/${user?.email}`;
+    const lowToHigh = `http://localhost:5000/sellerToys/lowToHigh/${user?.email}`;
     useEffect(() => {
-        fetch(url)
+        fetch(myToysUrl)
             .then(res => res.json())
-            .then(toys => setAllToysData(toys))
-    }, [url]);
+            .then(toys => setSellerToysData(toys))
+    }, [myToysUrl]);
+    const handleSortByPrice = (event) => {
+        setSortByPrice(event.target.value)
+    }
+    useEffect(() => {
+        if (sortByPrice === "highToLow") {
+            fetch(highToLowUrl)
+                .then(res => res.json())
+                .then(sortData => setSellerToysData(sortData))
+        } else if (sortByPrice === "lowToHigh") {
+            fetch(lowToHigh)
+                .then(res => res.json())
+                .then(sortData => setSellerToysData(sortData))
+        } else {
+            fetch(myToysUrl)
+                .then(res => res.json())
+                .then(toys => setSellerToysData(toys))
+        }
+    }, [sortByPrice, highToLowUrl, lowToHigh, myToysUrl])
     return (
         <div className='container mx-auto py-16 space-y-5'>
             <div className="form-control">
@@ -20,6 +41,14 @@ const MyToys = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                     </button>
                 </div>
+            </div>
+            <div>
+                <select onChange={handleSortByPrice} className='border-2 px-5 py-2 rounded-lg'>
+                    <option value="" selected disabled>Filter by Price</option>
+                    <option value="highToLow">High To Low</option>
+                    <option value="lowToHigh">Low To High</option>
+                    <option value="default">Default</option>
+                </select>
             </div>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
@@ -38,7 +67,7 @@ const MyToys = () => {
                     </thead>
                     <tbody>
                         {
-                            allToysData.map((toy, index) => {
+                            sellerToysData.map((toy, index) => {
                                 return (
                                     <tr key={toy._id}>
                                         <th>{index + 1}</th>
