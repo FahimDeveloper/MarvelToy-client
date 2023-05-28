@@ -40,10 +40,12 @@ const MyToys = () => {
         setSearchText(searchText)
     }
     useEffect(() => {
-        fetch(searchUrl)
-            .then(res => res.json())
-            .then(toys => setSellerToysData(toys));
-        if (searchText === "") {
+        if (searchText !== "") {
+            fetch(searchUrl)
+                .then(res => res.json())
+                .then(toys => setSellerToysData(toys));
+        }
+        else {
             fetch(myToysUrl)
                 .then(res => res.json())
                 .then(toys => setSellerToysData(toys))
