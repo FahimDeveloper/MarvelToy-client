@@ -17,7 +17,8 @@ const AddToy = () => {
         };
         const quantity = form.quantity.value;
         const rating = form.rating.value;
-        const toyData = { toyname, toyImg, category, price, seller, quantity, rating };
+        const description = form.description.value;
+        const toyData = { toyname, toyImg, category, price, seller, quantity, rating, description };
         fetch('http://localhost:5000/toys', {
             method: "POST",
             headers: {
@@ -27,9 +28,11 @@ const AddToy = () => {
         }).then(res => res.json()).then(data => {
             if (data.insertedId) {
                 Swal.fire({
+                    position: 'center',
                     icon: 'success',
-                    title: 'Success',
-                    text: 'successfully add your toy'
+                    title: 'successfully add your toy',
+                    showConfirmButton: false,
+                    timer: 2000
                 })
             }
         }).catch(error => {
@@ -41,8 +44,8 @@ const AddToy = () => {
         })
     }
     return (
-        <div className='container mx-auto flex justify-center items-center h-screen space-y-10'>
-            <form onSubmit={handlePostProduct} className='w-4/5 mx-auto card shadow-xl space-y-10 border p-10'>
+        <div className='container mx-auto flex justify-center items-center min-h-screen space-y-10 py-16'>
+            <form onSubmit={handlePostProduct} className='w-4/5 mx-auto card shadow-xl space-y-5 py-5 border px-10'>
                 <h2 className='text-center text-4xl font-medium'>Add Your Toy with all information</h2>
                 <div className='card-body space-y-5'>
                     <div className='flex gap-5'>
@@ -92,6 +95,10 @@ const AddToy = () => {
                             <label htmlFor="rating">Avaiblable Rating</label>
                             <input type="number" name='rating' id="rating" className='input input-bordered' placeholder='type price here' />
                         </div>
+                    </div>
+                    <div className='flex w-full flex-col gap-2'>
+                        <label htmlFor="Description">Description</label>
+                        <textarea name="description" className='border rounded-lg p-4' id="Description" rows="4" placeholder='Description'></textarea>
                     </div>
                     <button type='submit' className='btn btn-primary rounded-full'>Add Toy</button>
                 </div>
