@@ -8,7 +8,6 @@ const AllToys = () => {
             .then(res => res.json())
             .then(toys => setAllToysData(toys))
     }, [url]);
-    console.log(allToysData)
     return (
         <div className='container mx-auto py-16 space-y-5'>
             <div className="form-control">
