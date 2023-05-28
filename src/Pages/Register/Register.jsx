@@ -1,15 +1,34 @@
-import { } from 'react';
+import { useContext } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Auth/Auth';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
+    const { createUserWithEmail } = useContext(AuthContext);
+    const handleCraeteUser = (event) => {
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const photo = form.photo.value
+        createUserWithEmail(email, password)
+            .then(result => {
+                const user = result.user;
+                if (user) {
+                    updateProfile(user, {
+                        displayName: name, photoURL: photo
+                    }).then().catch(error => console.log(error.message))
+                }
+            }).catch(error => console.log(error.message));
+    }
     return (
         <div className='container mx-auto flex justify-center items-center h-screen'>
             <div className="card w-1/3 bg-base-100 shadow-xl border">
                 <div className="card-body">
                     <h2 className="text-center text-3xl font-medium mb-8">Create Seller Account</h2>
-                    <form className='space-y-4'>
+                    <form onSubmit={handleCraeteUser} className='space-y-4'>
                         <div className='flex flex-col gap-2'>
                             <label htmlFor="name">Name</label>
                             <input type="text" name="name" id="name" className='input input-bordered' />
