@@ -8,6 +8,7 @@ import { updateProfile } from 'firebase/auth';
 const Register = () => {
     const { continueWithGoogle, createUserWithEmail } = useContext(AuthContext);
     const handleCraeteUser = (event) => {
+        event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -58,8 +59,8 @@ const Register = () => {
                     <div className='space-y-3'>
                         <h3 className='text-center text-xl'>Continue With</h3>
                         <div className='flex justify-center items-center gap-5'>
-                            <FcGoogle onClick={handleGoogleLogin} className='text-3xl' />
-                            <FaGithub className='text-3xl' />
+                            <FcGoogle onClick={handleGoogleLogin} className='text-3xl cursor-pointer' />
+                            <FaGithub className='text-3xl cursor-pointer' />
                         </div>
                     </div>
                     <p className='text-center'>Already have an account? please <Link to="/login" className='text-info underline'>Login</Link></p>
