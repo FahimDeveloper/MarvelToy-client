@@ -5,10 +5,12 @@ import { FaPen, FaTrash, FaRegEye } from "react-icons/fa";
 const MyToys = () => {
     const { user } = useContext(AuthContext)
     const [sellerToysData, setSellerToysData] = useState([]);
+    const [searchText, setSearchText] = useState('');
     const [sortByPrice, setSortByPrice] = useState('')
     const myToysUrl = `http://localhost:5000/sellerToys/${user?.email}`;
     const highToLowUrl = `http://localhost:5000/sellerToys/highToLow/${user?.email}`;
     const lowToHigh = `http://localhost:5000/sellerToys/lowToHigh/${user?.email}`;
+    const searchUrl = `http://localhost:5000/searchToys/${searchText}/${user?.email}`;
     useEffect(() => {
         fetch(myToysUrl)
             .then(res => res.json())
@@ -31,15 +33,32 @@ const MyToys = () => {
                 .then(res => res.json())
                 .then(toys => setSellerToysData(toys))
         }
-    }, [sortByPrice, highToLowUrl, lowToHigh, myToysUrl])
+    }, [sortByPrice, highToLowUrl, lowToHigh, myToysUrl]);
+    const handleSearch = (event) => {
+        event.preventDefault();
+        const searchText = event.target.search.value;
+        setSearchText(searchText)
+    }
+    useEffect(() => {
+        fetch(searchUrl)
+            .then(res => res.json())
+            .then(toys => setSellerToysData(toys));
+        if (searchText === "") {
+            fetch(myToysUrl)
+                .then(res => res.json())
+                .then(toys => setSellerToysData(toys))
+        }
+    }, [searchUrl, searchText, myToysUrl])
     return (
         <div className='container mx-auto py-16 space-y-5'>
             <div className="form-control">
-                <div className="input-group justify-center w-full">
-                    <input type="text" placeholder="Search…" className="border-2 pl-3 w-1/3" />
-                    <button className="btn btn-square btn-secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                    </button>
+                <div className="form-control">
+                    <form onSubmit={handleSearch} className='input-group justify-center w-full'>
+                        <input type="text" name="search" placeholder="Search…" className="border-2 pl-3 w-1/3" />
+                        <button type='submit' className="btn btn-square btn-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                        </button>
+                    </form>
                 </div>
             </div>
             <div>
