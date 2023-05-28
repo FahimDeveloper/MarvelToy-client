@@ -6,7 +6,7 @@ import { AuthContext } from '../../Auth/Auth';
 import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
-    const { createUserWithEmail } = useContext(AuthContext);
+    const { continueWithGoogle, createUserWithEmail } = useContext(AuthContext);
     const handleCraeteUser = (event) => {
         const form = event.target;
         const name = form.name.value;
@@ -22,6 +22,9 @@ const Register = () => {
                     }).then().catch(error => console.log(error.message))
                 }
             }).catch(error => console.log(error.message));
+    }
+    const handleGoogleLogin = () => {
+        continueWithGoogle().then().catch(error => console.log(error.message))
     }
     return (
         <div className='container mx-auto flex justify-center items-center h-screen'>
@@ -55,7 +58,7 @@ const Register = () => {
                     <div className='space-y-3'>
                         <h3 className='text-center text-xl'>Continue With</h3>
                         <div className='flex justify-center items-center gap-5'>
-                            <FcGoogle className='text-3xl' />
+                            <FcGoogle onClick={handleGoogleLogin} className='text-3xl' />
                             <FaGithub className='text-3xl' />
                         </div>
                     </div>
