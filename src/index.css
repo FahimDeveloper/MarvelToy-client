@@ -6,6 +6,10 @@
     @apply text-primary
 }
 
+.detailsHeight {
+    min-height: calc(100vh - 70px);
+}
+
 .modal {
     margin: 0 !important;
 }

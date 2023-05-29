@@ -28,7 +28,7 @@ const Register = () => {
         continueWithGoogle().then().catch(error => console.log(error.message))
     }
     return (
-        <div className='container mx-auto flex justify-center items-center h-screen'>
+        <div className='container mx-auto flex justify-center items-center detailsHeight'>
             <div className="card w-1/3 bg-base-100 shadow-xl border">
                 <div className="card-body">
                     <h2 className="text-center text-3xl font-medium mb-8">Create Seller Account</h2>

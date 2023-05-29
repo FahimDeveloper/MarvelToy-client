@@ -16,7 +16,7 @@ const ViewToyDetails = () => {
         return <Loader />
     }
     return (
-        <div className="container mx-auto h-screen flex justify-center items-center">
+        <div className="container mx-auto flex justify-center detailsHeight items-center">
             <div className="grid grid-cols-3 items-center border border-secondary p-10 bg-base-100 shadow-xl rounded-3xl">
                 <img src={viewToysData.toyImg} alt="toy img" className="w-[500px] h-[500px] object-contain mx-auto col-span-1" />
                 <div className="card-body space-y-3 col-span-2">

@@ -54,7 +54,7 @@ const AddToy = () => {
         return <Loader />
     }
     return (
-        <div className='container mx-auto flex justify-center items-center min-h-screen space-y-10 py-16'>
+        <div className='container mx-auto flex justify-center items-center min-[calc(h-screen-70px)] space-y-10 py-16'>
             <form onSubmit={handlePostProduct} className='w-4/5 mx-auto card shadow-xl space-y-5 pb-5 pt-10 border px-10'>
                 <h2 className='text-center text-4xl font-medium'>Add Your Toy with all information</h2>
                 <div className='card-body space-y-2'>
