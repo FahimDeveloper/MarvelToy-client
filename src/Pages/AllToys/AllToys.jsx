@@ -1,11 +1,15 @@
-import { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from 'react';
 import Loader from '../SharedComponents/Loader/Loader';
+import { AuthContext } from '../../Auth/Auth';
+import { useNavigate } from "react-router-dom"
+import Swal from 'sweetalert2';
 
 const AllToys = () => {
+    const { user } = useContext(AuthContext)
     const [allToysData, setAllToysData] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate()
     const url = 'http://localhost:5000/allToys';
     const searchUrl = `http://localhost:5000/searchToys/${searchText}`;
     useEffect(() => {
@@ -36,6 +40,25 @@ const AllToys = () => {
                 .then(toys => setAllToysData(toys))
         }
     }, [searchUrl, searchText, url]);
+    const handleViewDetails = (id) => {
+        if (user) {
+            navigate(`/toys/view/${id}`)
+        } else {
+            Swal.fire({
+                title: 'Have To Login',
+                text: "Have to login for see toy details",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3ABFF8',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Go for login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login')
+                }
+            })
+        }
+    }
     if (loading === true) {
         return <Loader />
     }
@@ -77,7 +100,7 @@ const AllToys = () => {
                                         <td>{toy.seller.name}</td>
                                         <td>{toy.quantity}</td>
                                         <td>
-                                            <Link to={`/toys/view/${toy._id}`}><button className='btn btn-secondary rounded-full capitalize'>view details</button></Link>
+                                            <button onClick={() => handleViewDetails(toy._id)} className='btn btn-secondary rounded-full capitalize'>view details</button>
                                         </td>
                                     </tr>
                                 )
