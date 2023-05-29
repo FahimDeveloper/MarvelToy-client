@@ -10,11 +10,13 @@ import Blogs from "../Pages/Blogs/Blogs";
 import PrivetRoute from "./PrivetRoute";
 import AuthProtect from "./AuthProtect";
 import ViewToyDetails from "../Pages/ViewToyDetails/ViewToyDetails";
+import Error from "../Pages/SharedComponents/Error/Error";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
+        errorElement: <Error />,
         children: [
             { path: "/", element: <Home /> },
             { path: '/allToys', element: <AllToys /> },
