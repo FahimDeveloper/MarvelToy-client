@@ -3,6 +3,7 @@ import { AuthContext } from '../../Auth/Auth';
 import { FaPen, FaTrash, FaRegEye } from "react-icons/fa";
 import UpdateToys from './UpdateToys';
 import Swal from 'sweetalert2';
+import { Link } from "react-router-dom";
 
 const MyToys = () => {
     const { user } = useContext(AuthContext)
@@ -184,7 +185,7 @@ const MyToys = () => {
                                                     <FaPen onClick={() => setToyId(toy._id)} className='cursor-pointer' />
                                                 </label>
                                                 <FaTrash onClick={() => handleDelete(toy._id)} className='cursor-pointer text-error' />
-                                                <FaRegEye className='cursor-pointer text-primary' />
+                                                <Link to={`/toys/view/${toy._id}`}><FaRegEye className='cursor-pointer text-primary' /></Link>
                                             </div>
                                         </td>
                                     </tr>

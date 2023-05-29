@@ -62,7 +62,7 @@ const AddToy = () => {
                         <div className='flex w-full flex-col gap-1'>
                             <label htmlFor="category" className='pl-2 text-sm font-medium'>Sub Category</label>
                             <select name="category" className='input input-bordered rounded-full'>
-                                <option value="" disabled>Select an option</option>
+                                <option value="" disabled selected>Select an option</option>
                                 <option value="ironMan">Iron Man</option>
                                 <option value="captainAmerica">Captain America</option>
                                 <option value="blackPanther">Black Panther</option>

@@ -9,6 +9,7 @@ import Register from "../Pages/Register/Register";
 import Blogs from "../Pages/Blogs/Blogs";
 import PrivetRoute from "./PrivetRoute";
 import AuthProtect from "./AuthProtect";
+import ViewToyDetails from "../Pages/ViewToyDetails/ViewToyDetails";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
             { path: '/allToys', element: <AllToys /> },
             { path: '/sellerOwnToys', element: <PrivetRoute><MyToys /></PrivetRoute> },
             { path: "/addToy", element: <PrivetRoute><AddToy /></PrivetRoute> },
+            {
+                path: "/toys/view/:id", element: <PrivetRoute><ViewToyDetails /></PrivetRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/toys/${params.id}`)
+            },
             { path: "/blog", element: <Blogs /> },
             { path: "/login", element: <AuthProtect><Login /></AuthProtect> },
             { path: "register", element: <AuthProtect><Register /></AuthProtect> }
