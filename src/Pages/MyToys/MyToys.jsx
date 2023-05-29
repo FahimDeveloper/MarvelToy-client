@@ -4,11 +4,13 @@ import { FaPen, FaTrash, FaRegEye } from "react-icons/fa";
 import UpdateToys from './UpdateToys';
 import Swal from 'sweetalert2';
 import { Link } from "react-router-dom";
+import Loader from '../SharedComponents/Loader/Loader';
 
 const MyToys = () => {
     const { user } = useContext(AuthContext)
     const [sellerToysData, setSellerToysData] = useState([]);
     const [toyId, setToyId] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [searchText, setSearchText] = useState('');
     const [sortByPrice, setSortByPrice] = useState('')
     const myToysUrl = `http://localhost:5000/sellerToys/${user?.email}`;
@@ -16,6 +18,9 @@ const MyToys = () => {
     const lowToHigh = `http://localhost:5000/sellerToys/lowToHigh/${user?.email}`;
     const searchUrl = `http://localhost:5000/searchToys/${searchText}/${user?.email}`;
     useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
         fetch(myToysUrl)
             .then(res => res.json())
             .then(toys => setSellerToysData(toys))
@@ -131,6 +136,9 @@ const MyToys = () => {
                     })
             }
         })
+    }
+    if (loading === true || sellerToysData.length < 1) {
+        return <Loader />
     }
     return (
         <div className='container mx-auto py-16 space-y-5'>

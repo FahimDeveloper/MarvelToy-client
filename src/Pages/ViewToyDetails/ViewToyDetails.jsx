@@ -1,7 +1,18 @@
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom"
+import Loader from "../SharedComponents/Loader/Loader";
 
 const ViewToyDetails = () => {
     const viewToysData = useLoaderData();
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
+    }, []);
+    if (loading === true || viewToysData.length < 1) {
+        return <Loader />
+    }
     return (
         <div className="container mx-auto h-screen flex justify-center items-center">
             <div className="grid grid-cols-3 items-center border border-secondary p-10 bg-base-100 shadow-xl rounded-3xl">

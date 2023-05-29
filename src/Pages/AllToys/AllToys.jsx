@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import Loader from '../SharedComponents/Loader/Loader';
 
 const AllToys = () => {
     const [allToysData, setAllToysData] = useState([]);
     const [searchText, setSearchText] = useState('');
+    const [loading, setLoading] = useState(true);
     const url = 'http://localhost:5000/allToys';
     const searchUrl = `http://localhost:5000/searchToys/${searchText}`;
     useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
         fetch(url)
             .then(res => res.json())
             .then(toys => setAllToysData(toys))
@@ -30,7 +35,10 @@ const AllToys = () => {
                 .then(res => res.json())
                 .then(toys => setAllToysData(toys))
         }
-    }, [searchUrl, searchText, url])
+    }, [searchUrl, searchText, url]);
+    if (loading === true || allToysData.length < 1) {
+        return <Loader />
+    }
     return (
         <div className='container mx-auto py-16 space-y-5'>
             <div className="form-control">

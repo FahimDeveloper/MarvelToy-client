@@ -1,9 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Auth/Auth';
 import Swal from 'sweetalert2';
+import Loader from '../SharedComponents/Loader/Loader';
 
 const AddToy = () => {
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
+    }, []);
     const handlePostProduct = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -43,6 +50,9 @@ const AddToy = () => {
             });
         })
     }
+    if (loading === true) {
+        return <Loader />
+    }
     return (
         <div className='container mx-auto flex justify-center items-center min-h-screen space-y-10 py-16'>
             <form onSubmit={handlePostProduct} className='w-4/5 mx-auto card shadow-xl space-y-5 pb-5 pt-10 border px-10'>
@@ -62,7 +72,7 @@ const AddToy = () => {
                         <div className='flex w-full flex-col gap-1'>
                             <label htmlFor="category" className='pl-2 text-sm font-medium'>Sub Category</label>
                             <select name="category" className='input input-bordered rounded-full'>
-                                <option value="" disabled selected>Select an option</option>
+                                <option disabled selected>Select an option</option>
                                 <option value="ironMan">Iron Man</option>
                                 <option value="captainAmerica">Captain America</option>
                                 <option value="blackPanther">Black Panther</option>
@@ -79,11 +89,11 @@ const AddToy = () => {
                     <div className='flex gap-5'>
                         <div className='flex w-full flex-col gap-1'>
                             <label htmlFor="sellerName" className='pl-2 text-sm font-medium'>Seller Name</label>
-                            <input type="text" name='name' id="sellerName" className='input input-bordered rounded-full' value={user?.displayName} />
+                            <input type="text" name='name' id="sellerName" className='input input-bordered rounded-full' readOnly defaultValue={user?.displayName} />
                         </div>
                         <div className='flex w-full flex-col gap-1'>
                             <label htmlFor="sellerEmail" className='pl-2 text-sm font-medium'>Seller Email</label>
-                            <input type="email" name='email' id="sellerEmail" className='input input-bordered rounded-full' value={user?.email} />
+                            <input type="email" name='email' id="sellerEmail" className='input input-bordered rounded-full' readOnly defaultValue={user?.email} />
                         </div>
                     </div>
                     <div className='flex gap-5'>
