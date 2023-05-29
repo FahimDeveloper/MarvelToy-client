@@ -5,3 +5,7 @@
 .active {
     @apply text-primary
 }
+
+.space-y-5> :not([hidden])~ :not([hidden]) {
+    margin: 0;
+}

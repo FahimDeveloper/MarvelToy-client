@@ -1,10 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../Auth/Auth';
 import { FaPen, FaTrash, FaRegEye } from "react-icons/fa";
+import UpdateToys from './UpdateToys';
 
 const MyToys = () => {
     const { user } = useContext(AuthContext)
     const [sellerToysData, setSellerToysData] = useState([]);
+    const [toyId, setToyId] = useState(null);
     const [searchText, setSearchText] = useState('');
     const [sortByPrice, setSortByPrice] = useState('')
     const myToysUrl = `http://localhost:5000/sellerToys/${user?.email}`;
@@ -50,7 +52,7 @@ const MyToys = () => {
                 .then(res => res.json())
                 .then(toys => setSellerToysData(toys))
         }
-    }, [searchUrl, searchText, myToysUrl])
+    }, [searchUrl, searchText, myToysUrl]);
     return (
         <div className='container mx-auto py-16 space-y-5'>
             <div className="form-control">
@@ -65,7 +67,7 @@ const MyToys = () => {
             </div>
             <div>
                 <select onChange={handleSortByPrice} className='border-2 px-5 py-2 rounded-lg'>
-                    <option value="" selected disabled>Filter by Price</option>
+                    <option selected disabled>Filter by Price</option>
                     <option value="highToLow">High To Low</option>
                     <option value="lowToHigh">Low To High</option>
                     <option value="default">Default</option>
@@ -100,7 +102,9 @@ const MyToys = () => {
                                         <td>{toy.quantity}</td>
                                         <td>
                                             <div className='flex gap-4 text-xl items-center justify-start'>
-                                                <FaPen className='cursor-pointer' />
+                                                <label htmlFor="my-modal-5">
+                                                    <FaPen onClick={() => setToyId(toy._id)} className='cursor-pointer' />
+                                                </label>
                                                 <FaTrash className='cursor-pointer text-error' />
                                                 <FaRegEye className='cursor-pointer text-primary' />
                                             </div>
@@ -112,6 +116,9 @@ const MyToys = () => {
                     </tbody>
                 </table>
             </div>
+            {
+                toyId ? <UpdateToys toyId={toyId} /> : ''
+            }
         </div>
     );
 };

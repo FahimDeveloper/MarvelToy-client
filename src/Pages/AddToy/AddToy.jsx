@@ -50,17 +50,17 @@ const AddToy = () => {
                 <div className='card-body space-y-2'>
                     <div className='flex gap-5'>
                         <div className='flex w-full flex-col gap-1'>
-                            <label htmlFor="toyName" className='pl-2 text-sm'>Toy Name</label>
+                            <label htmlFor="toyName" className='pl-2 text-sm font-medium'>Toy Name</label>
                             <input type="text" name='toyname' id="toyName" className='input input-bordered rounded-full' placeholder='Type name here' />
                         </div>
                         <div className='flex w-full flex-col gap-1'>
-                            <label htmlFor="toyImg" className='pl-2 text-sm'>Image URL</label>
+                            <label htmlFor="toyImg" className='pl-2 text-sm font-medium'>Image URL</label>
                             <input type="url" name='photo' id="toyImg" className='input input-bordered rounded-full' placeholder='Type url here' />
                         </div>
                     </div>
                     <div className='flex gap-5'>
                         <div className='flex w-full flex-col gap-1'>
-                            <label htmlFor="category" className='pl-2 text-sm'>Sub Category</label>
+                            <label htmlFor="category" className='pl-2 text-sm font-medium'>Sub Category</label>
                             <select name="category" className='input input-bordered rounded-full'>
                                 <option value="" disabled>Select an option</option>
                                 <option value="ironMan">Iron Man</option>
@@ -72,32 +72,32 @@ const AddToy = () => {
                             </select>
                         </div>
                         <div className='flex w-full flex-col gap-1'>
-                            <label htmlFor="price" className='pl-2 text-sm'>Price</label>
+                            <label htmlFor="price" className='pl-2 text-sm font-medium'>Price</label>
                             <input type="number" name='price' id="price" className='input input-bordered rounded-full' placeholder='Type price here' />
                         </div>
                     </div>
                     <div className='flex gap-5'>
                         <div className='flex w-full flex-col gap-1'>
-                            <label htmlFor="sellerName" className='pl-2 text-sm'>Seller Name</label>
+                            <label htmlFor="sellerName" className='pl-2 text-sm font-medium'>Seller Name</label>
                             <input type="text" name='name' id="sellerName" className='input input-bordered rounded-full' value={user?.displayName} />
                         </div>
                         <div className='flex w-full flex-col gap-1'>
-                            <label htmlFor="sellerEmail" className='pl-2 text-sm'>Seller Email</label>
+                            <label htmlFor="sellerEmail" className='pl-2 text-sm font-medium'>Seller Email</label>
                             <input type="email" name='email' id="sellerEmail" className='input input-bordered rounded-full' value={user?.email} />
                         </div>
                     </div>
                     <div className='flex gap-5'>
                         <div className='flex w-full flex-col gap-1'>
-                            <label htmlFor="quantity" className='pl-2 text-sm'>Available Quantity</label>
+                            <label htmlFor="quantity" className='pl-2 text-sm font-medium'>Available Quantity</label>
                             <input type="number" name='quantity' id="quantity" className='input input-bordered rounded-full' placeholder='Type quantity here' />
                         </div>
                         <div className='flex w-full flex-col gap-1'>
-                            <label htmlFor="rating" className='pl-2 text-sm'>Avaiblable Rating</label>
+                            <label htmlFor="rating" className='pl-2 text-sm font-medium'>Avaiblable Rating</label>
                             <input type="number" name='rating' id="rating" className='input input-bordered rounded-full' placeholder='Type price here' />
                         </div>
                     </div>
                     <div className='flex w-full flex-col gap-1'>
-                        <label htmlFor="Description" className='pl-2 text-sm'>Description</label>
+                        <label htmlFor="Description" className='pl-2 text-sm font-medium'>Description</label>
                         <textarea name="description" className='border rounded-lg p-4' id="Description" rows="3" placeholder='Description'></textarea>
                     </div>
                     <button type='submit' className='btn btn-primary rounded-full'>Add Toy</button>
