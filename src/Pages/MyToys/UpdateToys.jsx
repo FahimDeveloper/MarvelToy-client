@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Auth/Auth';
 
-const UpdateToys = ({ toyId }) => {
+const UpdateToys = ({ toyId, handleUpdateToy }) => {
     const { user } = useContext(AuthContext);
     const [toyData, setToyData] = useState({})
     useEffect(() => {
@@ -14,7 +14,7 @@ const UpdateToys = ({ toyId }) => {
         <>
             <input type="checkbox" id="my-modal-5" className="modal-toggle" />
             <div className="modal">
-                <div className='modal-box relative w-11/12 max-w-5xl space-y-3'>
+                <form onSubmit={handleUpdateToy} className='modal-box relative w-11/12 max-w-5xl space-y-3'>
                     <label htmlFor="my-modal-5" className="btn btn-sm btn-secondary btn-circle absolute right-2 top-2">✕</label>
                     <h3 className='text-center text-3xl py-5 mb-5'>Update Your Toy information</h3>
                     <div className='flex gap-5'>
@@ -30,7 +30,7 @@ const UpdateToys = ({ toyId }) => {
                     <div className='flex gap-5'>
                         <div className='flex w-full flex-col gap-2'>
                             <label htmlFor="category" className='pl-2 text-sm font-medium'>Sub Category</label>
-                            <select name="category" className='input input-bordered rounded-full'>
+                            <select name="category" value={toyData.category} className='input input-bordered rounded-full'>
                                 <option value="ironMan">Iron Man</option>
                                 <option value="captainAmerica">Captain America</option>
                                 <option value="blackPanther">Black Panther</option>
@@ -69,7 +69,7 @@ const UpdateToys = ({ toyId }) => {
                         <textarea name="description" className='border rounded-lg p-4' id="Description" rows="3" defaultValue={toyData.description} placeholder='Description'></textarea>
                     </div>
                     <button type='submit' className='btn btn-primary w-full rounded-full'>Update Toy</button>
-                </div>
+                </form>
             </div>
         </>
     );

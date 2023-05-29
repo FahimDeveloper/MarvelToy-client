@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../Auth/Auth';
 import { FaPen, FaTrash, FaRegEye } from "react-icons/fa";
 import UpdateToys from './UpdateToys';
+import Swal from 'sweetalert2';
 
 const MyToys = () => {
     const { user } = useContext(AuthContext)
@@ -53,6 +54,48 @@ const MyToys = () => {
                 .then(toys => setSellerToysData(toys))
         }
     }, [searchUrl, searchText, myToysUrl]);
+    const handleUpdateToy = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const toyname = form.toyname.value;
+        const toyImg = form.photo.value;
+        const category = form.category.value;
+        const price = form.price.value;
+        const seller = {
+            name: form.name.value,
+            email: form.email.value
+        };
+        const quantity = form.quantity.value;
+        const rating = form.rating.value;
+        const description = form.description.value;
+        const toyData = { toyname, toyImg, category, price, seller, quantity, rating, description };
+        fetch(`http://localhost:5000/sellerToy/${toyId}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(toyData)
+        }).then(res => res.json()).then(data => {
+            if (data.modifiedCount > 0) {
+                fetch(myToysUrl)
+                    .then(res => res.json())
+                    .then(toys => setSellerToysData(toys));
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Successfully Update Your Toy',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            }
+        }).catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Opps',
+                text: `${error.message} try after some time`
+            });
+        })
+    }
     return (
         <div className='container mx-auto py-16 space-y-5'>
             <div className="form-control">
@@ -117,7 +160,7 @@ const MyToys = () => {
                 </table>
             </div>
             {
-                toyId ? <UpdateToys toyId={toyId} /> : ''
+                toyId ? <UpdateToys toyId={toyId} handleUpdateToy={handleUpdateToy} /> : ''
             }
         </div>
     );

@@ -30,7 +30,7 @@ const AddToy = () => {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'successfully add your toy',
+                    title: 'Successfully Add Your Toy',
                     showConfirmButton: false,
                     timer: 2000
                 })
