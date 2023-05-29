@@ -23,7 +23,10 @@ const MyToys = () => {
         }, 500);
         fetch(myToysUrl)
             .then(res => res.json())
-            .then(toys => setSellerToysData(toys))
+            .then(toys => {
+                setSellerToysData(toys);
+                setLoading(false)
+            })
     }, [myToysUrl]);
     const handleSortByPrice = (event) => {
         setSortByPrice(event.target.value)
@@ -137,7 +140,7 @@ const MyToys = () => {
             }
         })
     }
-    if (loading === true || sellerToysData.length < 1) {
+    if (loading === true) {
         return <Loader />
     }
     return (

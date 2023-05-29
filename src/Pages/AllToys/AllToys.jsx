@@ -36,7 +36,7 @@ const AllToys = () => {
                 .then(toys => setAllToysData(toys))
         }
     }, [searchUrl, searchText, url]);
-    if (loading === true || allToysData.length < 1) {
+    if (loading === true) {
         return <Loader />
     }
     return (

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom"
 import Loader from "../SharedComponents/Loader/Loader";
+import { FaStar, FaRegStar } from "react-icons/fa";
+import Rating from "react-rating";
 
 const ViewToyDetails = () => {
     const viewToysData = useLoaderData();
@@ -21,7 +23,16 @@ const ViewToyDetails = () => {
                     <h3 className="text-3xl font-medium">{viewToysData.toyname}</h3>
                     <p className="font-medium text-xl">Price : ${viewToysData.price}</p>
                     <p> <span className="font-medium">Available Quantity :</span> {viewToysData.quantity}</p>
-                    <p> <span className="font-medium">Rating :</span> {viewToysData.rating}</p>
+                    <p className="flex gap-2"> <span className="font-medium">Rating :</span>
+                        {viewToysData.rating}
+                        <Rating
+                            placeholderRating={viewToysData.rating}
+                            emptySymbol={<FaRegStar className="text-xl text-primary" />}
+                            placeholderSymbol={<FaStar className="text-primary text-xl" />}
+                            fullSymbol={<FaStar className="text-xl" />}
+                            readonly
+                        />
+                    </p>
                     <p> <span className="font-medium">Seller name :</span> {viewToysData.seller.name}</p>
                     <p> <span className="font-medium">Seller email :</span> {viewToysData.seller.email}</p>
                     <p><span className="font-medium">Description :</span> {viewToysData.description}</p>
