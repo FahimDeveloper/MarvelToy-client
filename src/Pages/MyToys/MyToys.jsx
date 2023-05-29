@@ -96,6 +96,41 @@ const MyToys = () => {
             });
         })
     }
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/toys/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            const filterData = sellerToysData.filter(toy => toy._id !== id);
+                            setSellerToysData(filterData);
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    }).catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Opps',
+                            text: `${error.message} try after some time`
+                        });
+                    })
+            }
+        })
+    }
     return (
         <div className='container mx-auto py-16 space-y-5'>
             <div className="form-control">
@@ -148,7 +183,7 @@ const MyToys = () => {
                                                 <label htmlFor="my-modal-5">
                                                     <FaPen onClick={() => setToyId(toy._id)} className='cursor-pointer' />
                                                 </label>
-                                                <FaTrash className='cursor-pointer text-error' />
+                                                <FaTrash onClick={() => handleDelete(toy._id)} className='cursor-pointer text-error' />
                                                 <FaRegEye className='cursor-pointer text-primary' />
                                             </div>
                                         </td>
