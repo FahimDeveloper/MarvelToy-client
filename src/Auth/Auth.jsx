@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { app } from '../firebase/firebase.config';
+import Swal from 'sweetalert2';
 
 export const AuthContext = createContext(null);
 const Auth = ({ children }) => {
@@ -20,6 +21,15 @@ const Auth = ({ children }) => {
     const logOut = () => {
         return signOut(auth)
     }
+    const loginSucessAlert = () => {
+        return Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Login successfully',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
     const authInfo = {
         user,
         setUser,
@@ -27,7 +37,8 @@ const Auth = ({ children }) => {
         createUserWithEmail,
         loginUserWithEmail,
         logOut,
-        loading
+        loading,
+        loginSucessAlert,
     }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {

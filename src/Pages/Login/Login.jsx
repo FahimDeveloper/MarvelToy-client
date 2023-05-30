@@ -6,7 +6,7 @@ import { AuthContext } from '../../Auth/Auth';
 import Loader from '../SharedComponents/Loader/Loader';
 
 const Login = () => {
-    const { continueWithGoogle, loginUserWithEmail } = useContext(AuthContext);
+    const { continueWithGoogle, loginUserWithEmail, loginSucessAlert } = useContext(AuthContext);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         setTimeout(() => {
@@ -22,10 +22,10 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         loginUserWithEmail(email, password)
-            .then().catch(error => console.log(error.message))
+            .then(() => loginSucessAlert()).catch(error => console.log(error.message))
     }
     const handleGoogleLogin = () => {
-        continueWithGoogle().then().catch(error => console.log(error.message))
+        continueWithGoogle().then(() => loginSucessAlert()).catch(error => console.log(error.message))
     }
     return (
         <div className='container mx-auto flex justify-center items-center detailsHeight'>

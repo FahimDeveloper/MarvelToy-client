@@ -164,23 +164,22 @@ const MyToys = () => {
                 </select>
             </div>
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>image</th>
-                            <th>toy name</th>
-                            <th>price</th>
-                            <th>category</th>
-                            <th>seller</th>
-                            <th>quantity</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            sellerToysData.map((toy, index) => {
+                {sellerToysData.length > 0 ?
+                    <table className="table w-full">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>image</th>
+                                <th>toy name</th>
+                                <th>price</th>
+                                <th>category</th>
+                                <th>seller</th>
+                                <th>quantity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {sellerToysData.map((toy, index) => {
                                 return (
                                     <tr key={toy._id}>
                                         <th>{index + 1}</th>
@@ -201,10 +200,10 @@ const MyToys = () => {
                                         </td>
                                     </tr>
                                 )
-                            })
-                        }
-                    </tbody>
-                </table>
+                            })}
+                        </tbody>
+                    </table> : <p className='flex justify-center items-center tableMiddle text-5xl'>No Toys Found</p>
+                }
             </div>
             {
                 toyId ? <UpdateToys toyId={toyId} handleUpdateToy={handleUpdateToy} /> : ''

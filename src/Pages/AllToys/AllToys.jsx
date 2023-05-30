@@ -73,41 +73,43 @@ const AllToys = () => {
                 </form>
             </div>
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>image</th>
-                            <th>toy name</th>
-                            <th>price</th>
-                            <th>category</th>
-                            <th>seller</th>
-                            <th>quantity</th>
-                            <th>details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            allToysData.map((toy, index) => {
-                                return (
-                                    <tr key={toy._id}>
-                                        <th>{index + 1}</th>
-                                        <td><img src={toy.toyImg} alt="toy image" className='w-20 h-20 m object-contain' /></td>
-                                        <td>{toy.toyname}</td>
-                                        <td>${toy.price}</td>
-                                        <td>{toy.category}</td>
-                                        <td>{toy.seller.name}</td>
-                                        <td>{toy.quantity}</td>
-                                        <td>
-                                            <button onClick={() => handleViewDetails(toy._id)} className='btn btn-secondary rounded-full capitalize'>view details</button>
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+                {
+                    allToysData.length > 0 ?
+                        <table className="table w-full">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>image</th>
+                                    <th>toy name</th>
+                                    <th>price</th>
+                                    <th>category</th>
+                                    <th>seller</th>
+                                    <th>quantity</th>
+                                    <th>details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    allToysData.map((toy, index) => {
+                                        return (
+                                            <tr key={toy._id}>
+                                                <th>{index + 1}</th>
+                                                <td><img src={toy.toyImg} alt="toy image" className='w-20 h-20 m object-contain' /></td>
+                                                <td>{toy.toyname}</td>
+                                                <td>${toy.price}</td>
+                                                <td>{toy.category}</td>
+                                                <td>{toy.seller.name}</td>
+                                                <td>{toy.quantity}</td>
+                                                <td>
+                                                    <button onClick={() => handleViewDetails(toy._id)} className='btn btn-secondary rounded-full capitalize'>view details</button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                }
+                            </tbody>
+                        </table> : <p className='flex justify-center items-center tableMiddle text-5xl'>No Toys Found</p>
+                }
             </div>
         </div>
     );
