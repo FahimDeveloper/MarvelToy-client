@@ -12,10 +12,10 @@ const Blogs = () => {
         return <Loader />
     }
     return (
-        <div className='container mx-auto flex justify-center items-center detailsHeight'>
+        <div className='container mx-auto flex justify-center items-center detailsHeight py-16'>
             <div className='space-y-10'>
                 <h2 className='text-4xl font-medium text-center'>Development Blogs</h2>
-                <div className='w-3/5 mx-auto'>
+                <div className='lg:w-3/5 md:w-4/5 w-full mx-auto'>
                     <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
                         <div className="collapse-title text-xl font-medium">
                             What is an access token and refresh token? How do they work and where should we store them on the client-side?

@@ -17,3 +17,7 @@
 .modal {
     margin: 0 !important;
 }
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
