@@ -1,11 +1,21 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom"
 import { AuthContext } from '../../Auth/Auth';
+import Loader from '../SharedComponents/Loader/Loader';
 
 const Login = () => {
     const { continueWithGoogle, loginUserWithEmail } = useContext(AuthContext);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
+    }, []);
+    if (loading === true) {
+        return <Loader />
+    }
     const handleLogin = (event) => {
         event.preventDefault();
         const form = event.target;

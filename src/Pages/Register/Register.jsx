@@ -1,12 +1,22 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Auth/Auth';
 import { updateProfile } from 'firebase/auth';
+import Loader from '../SharedComponents/Loader/Loader';
 
 const Register = () => {
     const { continueWithGoogle, createUserWithEmail } = useContext(AuthContext);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
+    }, []);
+    if (loading === true) {
+        return <Loader />
+    }
     const handleCraeteUser = (event) => {
         event.preventDefault();
         const form = event.target;
