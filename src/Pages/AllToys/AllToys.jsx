@@ -13,12 +13,12 @@ const AllToys = () => {
     const url = 'http://localhost:5000/allToys';
     const searchUrl = `http://localhost:5000/searchToys/${searchText}`;
     useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 500);
         fetch(url)
             .then(res => res.json())
-            .then(toys => setAllToysData(toys))
+            .then(toys => {
+                setAllToysData(toys);
+                setLoading(false);
+            });
     }, [url]);
     const handleSearch = (event) => {
         event.preventDefault();

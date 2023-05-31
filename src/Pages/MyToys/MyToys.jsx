@@ -28,9 +28,6 @@ const MyToys = () => {
     const totalPage = Math.ceil(totalToy / toyPerPage);
     const pageNumbers = [...Array(totalPage).keys()];
     useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 500);
         fetch(myToysUrl)
             .then(res => res.json())
             .then(toys => {
