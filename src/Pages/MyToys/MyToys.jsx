@@ -12,11 +12,21 @@ const MyToys = () => {
     const [toyId, setToyId] = useState(null);
     const [loading, setLoading] = useState(true);
     const [searchText, setSearchText] = useState('');
-    const [sortByPrice, setSortByPrice] = useState('')
-    const myToysUrl = `http://localhost:5000/sellerToys/${user?.email}`;
+    const [sortByPrice, setSortByPrice] = useState('');
+    const [totalToy, setTotalToy] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
+    const toyPerPage = 20;
+    const myToysUrl = `http://localhost:5000/sellerToys/${user?.email}?page=${currentPage}&limit=${toyPerPage}`;
     const highToLowUrl = `http://localhost:5000/sellerToys/highToLow/${user?.email}`;
     const lowToHigh = `http://localhost:5000/sellerToys/lowToHigh/${user?.email}`;
-    const searchUrl = `http://localhost:5000/searchToys/${searchText}/${user?.email}`;
+    const searchUrl = `http://localhost:5000/searchToys/${searchText}/${user?.email}?page=${currentPage}&limit=${toyPerPage}`;
+    useEffect(() => {
+        fetch(`http://localhost:5000/totalToy/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setTotalToy(data.total))
+    }, [user])
+    const totalPage = Math.ceil(totalToy / toyPerPage);
+    const pageNumbers = [...Array(totalPage).keys()];
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
@@ -204,6 +214,16 @@ const MyToys = () => {
                                 })}
                             </tbody>
                         </table>
+                    </div>
+                    <div className='text-center space-x-3'>
+                        {
+                            totalToy > 20 ? pageNumbers.map(number => <button
+                                onClick={() => setCurrentPage(number)}
+                                className={`${(currentPage === number) ? "border-2 text-xl rounded-3xl bg-primary" : ''} py-1 px-3 rounded text-lg border-2 border-primary`}
+                                key={number}>
+                                {number + 1}
+                            </button>) : ''
+                        }
                     </div>
                 </>
                 : <p className='flex justify-center items-center tableMiddle text-5xl'>No Toys Found</p>
