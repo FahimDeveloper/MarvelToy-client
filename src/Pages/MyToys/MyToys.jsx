@@ -155,56 +155,59 @@ const MyToys = () => {
                     </form>
                 </div>
             </div>
-            <div>
-                <select onChange={handleSortByPrice} className='border-2 px-5 py-2 rounded-lg'>
-                    <option selected disabled>Filter by Price</option>
-                    <option value="highToLow">High To Low</option>
-                    <option value="lowToHigh">Low To High</option>
-                    <option value="default">Default</option>
-                </select>
-            </div>
-            <div className="overflow-x-auto w-full">
-                {sellerToysData.length > 0 ?
-                    <table className="table w-full">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>image</th>
-                                <th>toy name</th>
-                                <th>price</th>
-                                <th>category</th>
-                                <th>seller</th>
-                                <th>quantity</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {sellerToysData.map((toy, index) => {
-                                return (
-                                    <tr key={toy._id}>
-                                        <th>{index + 1}</th>
-                                        <td><img src={toy.toyImg} alt="toy image" className='w-20 h-20 m object-contain' /></td>
-                                        <td>{toy.toyname}</td>
-                                        <td>${toy.price}</td>
-                                        <td>{toy.category}</td>
-                                        <td>{toy.seller.name}</td>
-                                        <td>{toy.quantity}</td>
-                                        <td>
-                                            <div className='flex gap-4 text-xl items-center justify-start'>
-                                                <label htmlFor="my-modal-5">
-                                                    <FaPen onClick={() => setToyId(toy._id)} className='cursor-pointer' />
-                                                </label>
-                                                <FaTrash onClick={() => handleDelete(toy._id)} className='cursor-pointer text-error' />
-                                                <Link to={`/toys/view/${toy._id}`}><FaRegEye className='cursor-pointer text-primary' /></Link>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table> : <p className='flex justify-center items-center tableMiddle text-5xl'>No Toys Found</p>
-                }
-            </div>
+            {sellerToysData.length > 0 ?
+                <>
+                    <div>
+                        <select onChange={handleSortByPrice} className='border-2 px-5 py-2 rounded-lg'>
+                            <option selected disabled>Filter by Price</option>
+                            <option value="highToLow">High To Low</option>
+                            <option value="lowToHigh">Low To High</option>
+                            <option value="default">Default</option>
+                        </select>
+                    </div>
+                    <div className="overflow-x-auto w-full">
+                        <table className="table w-full">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>image</th>
+                                    <th>toy name</th>
+                                    <th>price</th>
+                                    <th>category</th>
+                                    <th>seller</th>
+                                    <th>quantity</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {sellerToysData.map((toy, index) => {
+                                    return (
+                                        <tr key={toy._id}>
+                                            <th>{index + 1}</th>
+                                            <td><img src={toy.toyImg} alt="toy image" className='w-20 h-20 m object-contain' /></td>
+                                            <td>{toy.toyname}</td>
+                                            <td>${toy.price}</td>
+                                            <td>{toy.category}</td>
+                                            <td>{toy.seller.name}</td>
+                                            <td>{toy.quantity}</td>
+                                            <td>
+                                                <div className='flex gap-4 text-xl items-center justify-start'>
+                                                    <label htmlFor="my-modal-5">
+                                                        <FaPen onClick={() => setToyId(toy._id)} className='cursor-pointer' />
+                                                    </label>
+                                                    <FaTrash onClick={() => handleDelete(toy._id)} className='cursor-pointer text-error' />
+                                                    <Link to={`/toys/view/${toy._id}`}><FaRegEye className='cursor-pointer text-primary' /></Link>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                </>
+                : <p className='flex justify-center items-center tableMiddle text-5xl'>No Toys Found</p>
+            }
             {
                 toyId ? <UpdateToys toyId={toyId} handleUpdateToy={handleUpdateToy} /> : ''
             }
