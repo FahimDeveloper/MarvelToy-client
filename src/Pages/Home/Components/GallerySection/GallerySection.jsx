@@ -25,7 +25,7 @@ const GallerySection = () => {
     return (
         <div className='container mx-auto py-16 space-y-10'>
             <h2 className='text-5xl font-bold text-center italic'>Marvel Toy Gallery</h2>
-            <div>
+            <div data-aos="zoom-in" data-aos-duration="1000">
                 <Marquee className='flex'>
                     <img src={img1} className='w-80 h-80 object-contain border' alt="gallery image" />
                     <img src={img2} className='w-80 h-80 object-contain border' alt="gallery image" />

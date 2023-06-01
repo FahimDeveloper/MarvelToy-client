@@ -6,7 +6,7 @@ const TabSection = () => {
     const [toysData, setToysData] = useState([]);
     const [tabsCategroy, setTabsCategroy] = useState([]);
     const [tabsData, setTabsData] = useState([]);
-    const [category, setCategory] = useState("captainAmerica");
+    const [category, setCategory] = useState("");
     useEffect(() => {
         fetch('http://localhost:5000/allToys/')
             .then(res => res.json())
@@ -20,6 +20,7 @@ const TabSection = () => {
                 categories.push(toy.category)
             }
         });
+        setCategory(categories[0]);
         setTabsCategroy(categories);
     }, [toysData]);
     useEffect(() => {
@@ -45,7 +46,7 @@ const TabSection = () => {
                     tabsCategroy.map((category, index) => {
                         return (
                             <TabPanel key={index}>
-                                <div className='grid grid-cols-2 gap-5'>
+                                <div data-aos="flip-up" data-aos-duration="700" className='grid grid-cols-2 gap-5'>
                                     {
                                         tabsData?.slice(0, 2).map(tabToy => {
                                             return (
