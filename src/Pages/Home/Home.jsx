@@ -3,7 +3,7 @@ import BannerSection from './Components/BannerSection/BannerSection';
 import GallerySection from './Components/GallerySection/GallerySection';
 import TabSection from './Components/TabSection/TabSection';
 import Loader from '../SharedComponents/Loader/Loader';
-import BlogSection from './Components/blogSection/blogSection';
+import BlogSection from './Components/BlogSection/BlogSection';
 
 const Home = () => {
     const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ const Home = () => {
         return <Loader />
     }
     return (
-        <div>
+        <div className='overflow-hidden'>
             <BannerSection />
             <GallerySection />
             <TabSection />

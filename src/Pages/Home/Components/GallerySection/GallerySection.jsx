@@ -23,32 +23,32 @@ import Marquee from 'react-fast-marquee';
 
 const GallerySection = () => {
     return (
-        <div className='container mx-auto py-16 space-y-10'>
-            <h2 className='text-5xl font-bold text-center italic'>Marvel Toy Gallery</h2>
+        <div className='container mx-auto sm:py-16 py-10 space-y-10'>
+            <h2 className='lg:text-5xl text-4xl font-bold text-center italic'>Marvel Toy Gallery</h2>
             <div data-aos="zoom-in" data-aos-duration="1000">
                 <Marquee className='flex'>
-                    <img src={img1} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img2} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img3} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img4} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img5} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img6} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img7} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img8} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img9} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img10} className='w-80 h-80 object-contain border' alt="gallery image" />
+                    <img src={img1} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img2} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img3} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img4} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img5} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img6} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img7} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img8} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img9} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img10} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
                 </Marquee>
                 <Marquee className='flex'>
-                    <img src={img11} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img12} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img13} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img14} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img15} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img16} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img17} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img18} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img19} className='w-80 h-80 object-contain border' alt="gallery image" />
-                    <img src={img20} className='w-80 h-80 object-contain border' alt="gallery image" />
+                    <img src={img11} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img12} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img13} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img14} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img15} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img16} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img17} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img18} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img19} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
+                    <img src={img20} className='lg:w-80 md:72 w-60 lg:h-80 md:h-72 h-60 object-contain border' alt="gallery image" />
                 </Marquee>
             </div>
         </div>

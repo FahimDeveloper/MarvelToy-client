@@ -28,8 +28,8 @@ const TabSection = () => {
         setTabsData(tabsData)
     }, [toysData, category])
     return (
-        <div className='container mx-auto py-16 space-y-10'>
-            <h2 className='text-center text-5xl font-bold italic'>Marvel Toys</h2>
+        <div className='container mx-auto sm:py-16 py-10 space-y-10'>
+            <h2 className='text-center lg:text-5xl text-4xl font-bold italic'>Marvel Toys</h2>
             <Tabs className="space-y-10">
                 <div className='text-center'>
                     <TabList>
@@ -46,15 +46,15 @@ const TabSection = () => {
                     tabsCategroy.map((category, index) => {
                         return (
                             <TabPanel key={index}>
-                                <div data-aos="flip-up" data-aos-duration="700" className='grid grid-cols-2 gap-5'>
+                                <div data-aos="flip-up" data-aos-duration="700" className='grid sm:grid-cols-2 grid-cols-1 gap-5'>
                                     {
                                         tabsData?.slice(0, 2).map(tabToy => {
                                             return (
-                                                <div key={tabToy._id} className="card border border-primary grid grid-cols-7 items-center bg-base-100 shadow-xl">
-                                                    <figure className='col-span-3'><img src={tabToy.toyImg} className='w-96 h-96 object-contain' alt="Movie" /></figure>
-                                                    <div className="space-y-5 p-5 col-span-4">
-                                                        <h2 className="card-title text-3xl">{tabToy.toyname}</h2>
-                                                        <p className='text-xl font-medium'>Price : ${tabToy.price}</p>
+                                                <div key={tabToy._id} className="border border-primary lg:grid lg:grid-cols-7 items-center bg-base-100 shadow-xl rounded-xl">
+                                                    <figure className='col-span-3'><img src={tabToy.toyImg} className='lg:w-96 w-72 lg:h-96 h-72 mx-auto object-contain' alt="Movie" /></figure>
+                                                    <div className="xl:space-y-5 md:space-y-3 space-y-2 p-5 col-span-4">
+                                                        <h2 className="card-title xl:text-3xl text-xl">{tabToy.toyname}</h2>
+                                                        <p className='xl:text-xl lg:text-lg font-medium'>Price : ${tabToy.price}</p>
                                                         <p><span>Rating :</span> {tabToy.rating}</p>
                                                         <p><span>Category :</span> {tabToy.category}</p>
                                                         <p><span>Seller :</span> {tabToy.seller.name}</p>

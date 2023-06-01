@@ -26,5 +26,12 @@ body {
     min-height: calc(100vh - 70px);
     background-image: linear-gradient(to right, #000000b7 0%, rgba(0, 0, 0, 0) 100%), url("../src/assets/images/home-banner.jpg");
     background-size: cover;
+    background-position-x: center;
     background-repeat: no-repeat;
+}
+
+@media all and (max-width:640px) {
+    .container {
+        width: 90%;
+    }
 }

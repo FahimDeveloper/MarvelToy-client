@@ -13,7 +13,7 @@ const Header = () => {
                 <FaBars onClick={() => setOpenNav(!openNav)} className='text-2xl text-base-100 lg:hidden' />
                 <Link to="/" className='flex items-center gap-2'>
                     <img src={logo} alt="logo" className='w-20 object-cover' />
-                    <h3 className='text-3xl font-bold italic'>Marvel <span className='text-primary'>Toys</span></h3>
+                    <h3 className='sm:text-3xl text-2xl font-bold italic'>Marvel <span className='text-primary'>Toys</span></h3>
                 </Link>
                 <div className='text-lg font-medium space-x-8 lg:flex hidden items-center'>
                     <NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink>
