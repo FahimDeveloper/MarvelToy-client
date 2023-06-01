@@ -31,10 +31,10 @@ const UpdateToys = ({ toyId, handleUpdateToy }) => {
                         <div className='flex w-full flex-col gap-2'>
                             <label htmlFor="category" className='pl-2 text-sm font-medium'>Sub Category</label>
                             <select name="category" value={toyData.category} className='input input-bordered rounded-full'>
-                                <option value="ironMan">Iron Man</option>
-                                <option value="captainAmerica">Captain America</option>
-                                <option value="blackPanther">Black Panther</option>
-                                <option value="spiderMan">Spider Man</option>
+                                <option value="iron man">Iron Man</option>
+                                <option value="captain america">Captain America</option>
+                                <option value="black panther">Black Panther</option>
+                                <option value="spider man">Spider Man</option>
                                 <option value="thor">Thor</option>
                                 <option value="hulk">Hulk</option>
                             </select>
