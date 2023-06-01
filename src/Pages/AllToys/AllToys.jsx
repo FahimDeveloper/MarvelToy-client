@@ -64,7 +64,7 @@ const AllToys = () => {
                 confirmButtonText: 'Go for login'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login')
+                    navigate(`/toys/view/${id}`)
                 }
             })
         }

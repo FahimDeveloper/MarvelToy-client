@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { AuthContext } from '../../../../Auth/Auth';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const TabSection = () => {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [toysData, setToysData] = useState([]);
     const [tabsCategroy, setTabsCategroy] = useState([]);
     const [tabsData, setTabsData] = useState([]);
@@ -26,7 +31,26 @@ const TabSection = () => {
     useEffect(() => {
         const tabsData = toysData.filter(toy => toy.category === category);
         setTabsData(tabsData)
-    }, [toysData, category])
+    }, [toysData, category]);
+    const handleViewDetails = (id) => {
+        if (user) {
+            navigate(`/toys/view/${id}`)
+        } else {
+            Swal.fire({
+                title: 'Have To Login',
+                text: "Have to login for see toy details",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3ABFF8',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Go for login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate(`/toys/view/${id}`)
+                }
+            })
+        }
+    }
     return (
         <div className='container mx-auto sm:py-16 py-10 space-y-10'>
             <h2 className='text-center lg:text-5xl text-4xl font-bold italic'>Marvel Toys</h2>
@@ -59,7 +83,7 @@ const TabSection = () => {
                                                         <p><span>Category :</span> {tabToy.category}</p>
                                                         <p><span>Seller :</span> {tabToy.seller.name}</p>
                                                         <div className="card-actions justify-end">
-                                                            <button className="btn btn-primary">view details</button>
+                                                            <button onClick={() => handleViewDetails(tabToy._id)} className="btn btn-primary">view details</button>
                                                         </div>
                                                     </div>
                                                 </div>
