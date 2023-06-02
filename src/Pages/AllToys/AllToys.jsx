@@ -13,10 +13,10 @@ const AllToys = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const toyPerPage = 20;
     const navigate = useNavigate();
-    const url = 'http://localhost:5000/allToys';
-    const searchUrl = `http://localhost:5000/searchToys/${searchText}`;
+    const url = 'http://assignment-11-server-psi-ten.vercel.app/allToys';
+    const searchUrl = `http://assignment-11-server-psi-ten.vercel.app/searchToys/${searchText}`;
     useEffect(() => {
-        fetch(`http://localhost:5000/totalToy`)
+        fetch(`http://assignment-11-server-psi-ten.vercel.app/totalToy`)
             .then(res => res.json())
             .then(data => setTotalToy(data.total))
     }, []);

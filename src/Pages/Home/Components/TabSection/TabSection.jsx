@@ -15,7 +15,7 @@ const TabSection = () => {
     const [tabsData, setTabsData] = useState([]);
     const [category, setCategory] = useState("");
     useEffect(() => {
-        fetch('http://localhost:5000/allToys/')
+        fetch('http://assignment-11-server-psi-ten.vercel.app/allToys/')
             .then(res => res.json())
             .then(data => setToysData(data));
     }, []);

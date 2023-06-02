@@ -16,12 +16,12 @@ const MyToys = () => {
     const [totalToy, setTotalToy] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
     const toyPerPage = 20;
-    const myToysUrl = `http://localhost:5000/sellerToys/${user?.email}?page=${currentPage}&limit=${toyPerPage}`;
-    const highToLowUrl = `http://localhost:5000/sellerToys/highToLow/${user?.email}`;
-    const lowToHigh = `http://localhost:5000/sellerToys/lowToHigh/${user?.email}`;
-    const searchUrl = `http://localhost:5000/searchToys/${searchText}/${user?.email}?page=${currentPage}&limit=${toyPerPage}`;
+    const myToysUrl = `http://assignment-11-server-psi-ten.vercel.app/sellerToys/${user?.email}?page=${currentPage}&limit=${toyPerPage}`;
+    const highToLowUrl = `http://assignment-11-server-psi-ten.vercel.app/sellerToys/highToLow/${user?.email}`;
+    const lowToHigh = `http://assignment-11-server-psi-ten.vercel.app/sellerToys/lowToHigh/${user?.email}`;
+    const searchUrl = `http://assignment-11-server-psi-ten.vercel.app/searchToys/${searchText}/${user?.email}?page=${currentPage}&limit=${toyPerPage}`;
     useEffect(() => {
-        fetch(`http://localhost:5000/totalToy/${user?.email}`)
+        fetch(`http://assignment-11-server-psi-ten.vercel.app/totalToy/${user?.email}`)
             .then(res => res.json())
             .then(data => setTotalToy(data.total))
     }, [user])
@@ -88,7 +88,7 @@ const MyToys = () => {
         const rating = form.rating.value;
         const description = form.description.value;
         const toyData = { toyname, toyImg, category, price, seller, quantity, rating, description };
-        fetch(`http://localhost:5000/sellerToy/${toyId}`, {
+        fetch(`http://assignment-11-server-psi-ten.vercel.app/sellerToy/${toyId}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'
@@ -126,7 +126,7 @@ const MyToys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/toys/${id}`, {
+                fetch(`http://assignment-11-server-psi-ten.vercel.app/toys/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
