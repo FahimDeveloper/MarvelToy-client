@@ -13,7 +13,7 @@ const AllToys = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const toyPerPage = 20;
     const navigate = useNavigate();
-    const url = 'https://assignment-11-server-psi-ten.vercel.app/allToys';
+    const url = `https://assignment-11-server-psi-ten.vercel.app/everyToys?page=${currentPage}&limit=${toyPerPage}`;
     const searchUrl = `https://assignment-11-server-psi-ten.vercel.app/searchToys/${searchText}`;
     useEffect(() => {
         fetch(`https://assignment-11-server-psi-ten.vercel.app/totalToy`)
@@ -44,7 +44,7 @@ const AllToys = () => {
                     setLoading(false);
                 })
         }
-    }, [searchUrl, searchText, url]);
+    }, [searchUrl, searchText, url, currentPage]);
     const handleViewDetails = (id) => {
         if (user) {
             navigate(`/toys/view/${id}`)
@@ -118,7 +118,7 @@ const AllToys = () => {
                         </div>
                         <div className='text-center space-x-3'>
                             {
-                                totalToy.length > 20 ? pageNumbers.map(number => <button
+                                totalToy > 20 ? pageNumbers.map(number => <button
                                     onClick={() => setCurrentPage(number)}
                                     className={`${(currentPage === number) ? "border-2 text-xl rounded-lg bg-primary" : ''} py-1 px-3 rounded text-lg border-2 border-primary`}
                                     key={number}>

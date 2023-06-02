@@ -5,7 +5,6 @@ const UpdateToys = ({ toyId, handleUpdateToy }) => {
     const { user } = useContext(AuthContext);
     const [toyData, setToyData] = useState({})
     useEffect(() => {
-        setToyData({})
         fetch(`https://assignment-11-server-psi-ten.vercel.app/toys/${toyId}/${user?.email}`)
             .then(res => res.json())
             .then(data => setToyData(data));
@@ -20,11 +19,11 @@ const UpdateToys = ({ toyId, handleUpdateToy }) => {
                     <div className='flex gap-5'>
                         <div className='flex w-full flex-col gap-2'>
                             <label htmlFor="toyName" className='pl-2 text-sm font-medium'>Toy Name</label>
-                            <input type="text" name='toyname' id="toyName" className='input input-bordered rounded-full' defaultValue={toyData.toyname} placeholder='Type name here' />
+                            <input type="text" name='toyname' id="toyName" className='input input-bordered rounded-full' defaultValue={toyData?.toyname} placeholder='Type name here' />
                         </div>
                         <div className='flex w-full flex-col gap-2'>
                             <label htmlFor="toyImg" className='pl-2 text-sm font-medium'>Image URL</label>
-                            <input type="url" name='photo' id="toyImg" className='input input-bordered rounded-full' defaultValue={toyData.toyImg} placeholder='Type url here' />
+                            <input type="url" name='photo' id="toyImg" className='input input-bordered rounded-full' defaultValue={toyData?.toyImg} placeholder='Type url here' />
                         </div>
                     </div>
                     <div className='flex gap-5'>

@@ -24,7 +24,8 @@ const MyToys = () => {
         fetch(`https://assignment-11-server-psi-ten.vercel.app/totalToy/${user?.email}`)
             .then(res => res.json())
             .then(data => setTotalToy(data.total))
-    }, [user])
+    }, [user]);
+    console.log(totalToy)
     const totalPage = Math.ceil(totalToy / toyPerPage);
     const pageNumbers = [...Array(totalPage).keys()];
     useEffect(() => {
@@ -98,7 +99,10 @@ const MyToys = () => {
             if (data.modifiedCount > 0) {
                 fetch(myToysUrl)
                     .then(res => res.json())
-                    .then(toys => setSellerToysData(toys));
+                    .then(toys => {
+                        setSellerToysData(toys);
+                        form.reset();
+                    });
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
@@ -217,7 +221,7 @@ const MyToys = () => {
                     </div>
                     <div className='text-center space-x-3'>
                         {
-                            totalToy.length > 20 ? pageNumbers.map(number => <button
+                            totalToy > 20 ? pageNumbers.map(number => <button
                                 onClick={() => setCurrentPage(number)}
                                 className={`${(currentPage === number) ? "border-2 text-xl rounded-lg bg-primary" : ''} py-1 px-3 rounded text-lg border-2 border-primary`}
                                 key={number}>
