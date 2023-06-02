@@ -3,7 +3,9 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { AuthContext } from '../../../../Auth/Auth';
 import { useNavigate } from 'react-router-dom';
+import { FaStar, FaRegStar } from "react-icons/fa";
 import Swal from 'sweetalert2';
+import Rating from 'react-rating';
 
 const TabSection = () => {
     const { user } = useContext(AuthContext);
@@ -79,7 +81,16 @@ const TabSection = () => {
                                                     <div className="xl:space-y-5 md:space-y-3 space-y-2 p-5 col-span-4">
                                                         <h2 className="card-title xl:text-3xl text-xl">{tabToy.toyname}</h2>
                                                         <p className='xl:text-xl lg:text-lg font-medium'>Price : ${tabToy.price}</p>
-                                                        <p><span>Rating :</span> {tabToy.rating}</p>
+                                                        <p className='flex items-center gap-1'>
+                                                            <span>Rating :</span>
+                                                            <Rating
+                                                                placeholderRating={tabToy.rating}
+                                                                emptySymbol={<FaRegStar className="text-xl text-primary" />}
+                                                                placeholderSymbol={<FaStar className="text-primary text-xl" />}
+                                                                fullSymbol={<FaStar className="text-xl" />}
+                                                                readonly
+                                                            />
+                                                        </p>
                                                         <p><span>Category :</span> {tabToy.category}</p>
                                                         <p><span>Seller :</span> {tabToy.seller.name}</p>
                                                         <div className="card-actions justify-end">
