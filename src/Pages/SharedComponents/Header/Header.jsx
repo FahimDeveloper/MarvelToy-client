@@ -56,10 +56,10 @@ const Header = () => {
                 </div>
                 <div className="dropdown dropdown-end lg:hidden">
                     <label tabIndex={0}>
-                        <img title={user?.displayName} src={user?.photoURL} className='object-contain w-12 cursor-pointer rounded-full' />
+                        <img title={user?.displayName} src={user?.photoURL} className='object-cover w-12 h-12 cursor-pointer rounded-full' />
                     </label>
                     <div tabIndex={0} className="mt-3 p-2 shadow card dropdown-content bg-base-100 text-accent rounded-box w-80 border border-secondary py-10 px-10 space-y-5">
-                        <img src={user?.photoURL} alt="user photo" className='w-28 border border-primary rounded-full object-contain mx-auto' />
+                        <img src={user?.photoURL} alt="user photo" className='w-28 h-28 border border-primary rounded-full object-cover mx-auto' />
                         <h3 className='text-lg text-center'>{user?.displayName}</h3>
                         <p className='text-sm text-center'>{user?.email}</p>
                         <div className='text-center'>

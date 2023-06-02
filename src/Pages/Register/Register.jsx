@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Auth/Auth';
 import { updateProfile } from 'firebase/auth';
 import Loader from '../SharedComponents/Loader/Loader';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const { continueWithGoogle, createUserWithEmail } = useContext(AuthContext);
@@ -30,12 +30,30 @@ const Register = () => {
                 if (user) {
                     updateProfile(user, {
                         displayName: name, photoURL: photo
-                    }).then().catch(error => console.log(error.message))
+                    }).then().catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: error.message,
+                        })
+                    })
                 }
-            }).catch(error => console.log(error.message));
+            }).catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.message,
+                })
+            });
     }
     const handleGoogleLogin = () => {
-        continueWithGoogle().then().catch(error => console.log(error.message))
+        continueWithGoogle().then().catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: error.message,
+            })
+        })
     }
     return (
         <div className='container mx-auto flex justify-center items-center detailsHeight'>
@@ -70,7 +88,6 @@ const Register = () => {
                         <h3 className='text-center text-xl'>Continue With</h3>
                         <div className='flex justify-center items-center gap-5'>
                             <FcGoogle onClick={handleGoogleLogin} className='text-3xl cursor-pointer' />
-                            <FaGithub className='text-3xl cursor-pointer' />
                         </div>
                     </div>
                     <p className='text-center'>Already have an account? please <Link to="/login" className='text-info underline'>Login</Link></p>
