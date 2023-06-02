@@ -13,23 +13,15 @@ const AllToys = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const toyPerPage = 20;
     const navigate = useNavigate();
-    const url = 'http://assignment-11-server-psi-ten.vercel.app/allToys';
-    const searchUrl = `http://assignment-11-server-psi-ten.vercel.app/searchToys/${searchText}`;
+    const url = 'https://assignment-11-server-psi-ten.vercel.app/allToys';
+    const searchUrl = `https://assignment-11-server-psi-ten.vercel.app/searchToys/${searchText}`;
     useEffect(() => {
-        fetch(`http://assignment-11-server-psi-ten.vercel.app/totalToy`)
+        fetch(`https://assignment-11-server-psi-ten.vercel.app/totalToy`)
             .then(res => res.json())
             .then(data => setTotalToy(data.total))
     }, []);
     const totalPage = Math.ceil(totalToy / toyPerPage);
     const pageNumbers = [...Array(totalPage).keys()];
-    useEffect(() => {
-        fetch(url)
-            .then(res => res.json())
-            .then(toys => {
-                setAllToysData(toys);
-                setLoading(false);
-            });
-    }, [url]);
     const handleSearch = (event) => {
         event.preventDefault();
         const searchText = event.target.search.value;
@@ -47,7 +39,10 @@ const AllToys = () => {
         else {
             fetch(url)
                 .then(res => res.json())
-                .then(toys => setAllToysData(toys))
+                .then(toys => {
+                    setAllToysData(toys);
+                    setLoading(false);
+                })
         }
     }, [searchUrl, searchText, url]);
     const handleViewDetails = (id) => {

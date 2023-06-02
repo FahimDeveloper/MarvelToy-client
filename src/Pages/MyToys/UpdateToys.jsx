@@ -6,7 +6,7 @@ const UpdateToys = ({ toyId, handleUpdateToy }) => {
     const [toyData, setToyData] = useState({})
     useEffect(() => {
         setToyData({})
-        fetch(`http://assignment-11-server-psi-ten.vercel.app/toys/${toyId}/${user?.email}`)
+        fetch(`https://assignment-11-server-psi-ten.vercel.app/toys/${toyId}/${user?.email}`)
             .then(res => res.json())
             .then(data => setToyData(data));
     }, [toyId, user]);

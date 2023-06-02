@@ -24,7 +24,7 @@ const router = createBrowserRouter([
             { path: "/addToy", element: <PrivetRoute><AddToy /></PrivetRoute> },
             {
                 path: "/toys/view/:id", element: <PrivetRoute><ViewToyDetails /></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://assignment-11-server-psi-ten.vercel.app/toys/${params.id}`)
+                loader: ({ params }) => fetch(`https://assignment-11-server-psi-ten.vercel.app/toys/${params.id}`)
             },
             { path: "/blog", element: <Blogs /> },
             { path: "/login", element: <AuthProtect><Login /></AuthProtect> },

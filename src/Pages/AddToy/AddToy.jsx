@@ -26,7 +26,7 @@ const AddToy = () => {
         const rating = form.rating.value;
         const description = form.description.value;
         const toyData = { toyname, toyImg, category, price, seller, quantity, rating, description };
-        fetch('http://assignment-11-server-psi-ten.vercel.app/toys', {
+        fetch('https://assignment-11-server-psi-ten.vercel.app/toys', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
