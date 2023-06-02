@@ -4,6 +4,7 @@ import GallerySection from './Components/GallerySection/GallerySection';
 import TabSection from './Components/TabSection/TabSection';
 import Loader from '../SharedComponents/Loader/Loader';
 import BlogSection from './Components/BlogSection/BlogSection';
+import Contact from './Components/Contact/Contact';
 
 const Home = () => {
     const [loading, setLoading] = useState(true);
@@ -21,6 +22,7 @@ const Home = () => {
             <GallerySection />
             <TabSection />
             <BlogSection />
+            <Contact />
         </div>
     );
 };
