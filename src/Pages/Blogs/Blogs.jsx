@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import Loader from '../SharedComponents/Loader/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const Blogs = () => {
     const [loading, setLoading] = useState(true);
+    useTitle('Blogs')
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)

@@ -4,10 +4,12 @@ import { Link } from "react-router-dom"
 import { AuthContext } from '../../Auth/Auth';
 import Loader from '../SharedComponents/Loader/Loader';
 import Swal from 'sweetalert2';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
     const { continueWithGoogle, loginUserWithEmail, loginSucessAlert } = useContext(AuthContext);
     const [loading, setLoading] = useState(true);
+    useTitle('Login');
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)

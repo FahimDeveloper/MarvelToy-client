@@ -5,9 +5,11 @@ import UpdateToys from './UpdateToys';
 import Swal from 'sweetalert2';
 import { Link } from "react-router-dom";
 import Loader from '../SharedComponents/Loader/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const MyToys = () => {
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
+    useTitle('My Toys');
     const [sellerToysData, setSellerToysData] = useState([]);
     const [toyId, setToyId] = useState(null);
     const [loading, setLoading] = useState(true);

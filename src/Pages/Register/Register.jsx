@@ -5,10 +5,12 @@ import { AuthContext } from '../../Auth/Auth';
 import { updateProfile } from 'firebase/auth';
 import Loader from '../SharedComponents/Loader/Loader';
 import Swal from 'sweetalert2';
+import useTitle from '../../hooks/useTitle';
 
 const Register = () => {
     const { continueWithGoogle, createUserWithEmail } = useContext(AuthContext);
     const [loading, setLoading] = useState(true);
+    useTitle('Register');
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)

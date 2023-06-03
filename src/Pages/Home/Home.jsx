@@ -5,8 +5,10 @@ import TabSection from './Components/TabSection/TabSection';
 import Loader from '../SharedComponents/Loader/Loader';
 import BlogSection from './Components/BlogSection/BlogSection';
 import Contact from './Components/Contact/Contact';
+import useTitle from '../../hooks/useTitle';
 
 const Home = () => {
+    useTitle('Home');
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         setTimeout(() => {

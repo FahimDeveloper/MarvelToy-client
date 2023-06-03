@@ -3,10 +3,12 @@ import { useLoaderData } from "react-router-dom"
 import Loader from "../SharedComponents/Loader/Loader";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import Rating from "react-rating";
+import useTitle from "../../hooks/useTitle";
 
 const ViewToyDetails = () => {
     const viewToysData = useLoaderData();
     const [loading, setLoading] = useState(true);
+    useTitle('View details');
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)

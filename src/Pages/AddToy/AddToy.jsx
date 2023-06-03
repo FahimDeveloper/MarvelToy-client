@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../Auth/Auth';
 import Swal from 'sweetalert2';
 import Loader from '../SharedComponents/Loader/Loader';
+import useTitle from '../../hooks/useTitle';
 
 const AddToy = () => {
     const { user } = useContext(AuthContext);
+    useTitle("Add Toy")
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         setTimeout(() => {

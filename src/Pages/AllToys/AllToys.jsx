@@ -3,9 +3,11 @@ import Loader from '../SharedComponents/Loader/Loader';
 import { AuthContext } from '../../Auth/Auth';
 import { useNavigate } from "react-router-dom"
 import Swal from 'sweetalert2';
+import useTitle from '../../hooks/useTitle';
 
 const AllToys = () => {
-    const { user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
+    useTitle("All Toys")
     const [allToysData, setAllToysData] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [loading, setLoading] = useState(true);
